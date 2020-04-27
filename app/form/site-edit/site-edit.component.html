@@ -1,0 +1,78 @@
+<div class="page-container">
+  <h2>Редактирование площадки для сайта</h2>
+  <hr>
+  <div [ngClass]="{'disable-form': hideForm}">
+    <form class="form" (ngSubmit)="submitForm(form)" #form="ngForm">
+      <div class="form-group">
+        <label>Выберите Название сайта</label>
+        <select
+          class="form-control"
+          name="site"
+          ngModel
+          (input)="getId($event)"
+          required
+        >
+          <option
+            *ngFor="let area of areaCurrent"
+            [value]="area.ID"
+          >
+            {{area.NAME}}
+          </option>Петрозаводск, Респ. Карелия
+        </select>
+      </div>
+      <div class="form-group" [ngClass]="{'disable-form': !hideBlock}">
+        <div
+          class="form-group"
+        >
+          <h4>Список созданных языковых версий</h4>
+          <ul class="list-group">
+            <li
+              class="list-group-item"
+              *ngFor="let item of currentLangArr | keys; let i = index"
+            >
+              {{i + 1}}) {{item.value.NAME}}
+            </li>
+          </ul>
+        </div>
+
+        <div *ngIf="resultBoxList.length > 0" class="form-group">
+          <h4>Выберите какие языковые версии добавить:</h4>
+          <div ngModelGroup="langs">
+            <div *ngFor="let item of resultBoxList; index as i">
+              <label for="{{item.code}}">
+                <input
+                  id="{{item.code}}"
+                  [value]='item.code'
+                  type="checkbox"
+                  name="{{item.code}}"
+                  ngModel
+                >
+                {{item.name}}
+              </label>
+            </div>
+          </div>
+          <p class="error" *ngIf="!statusLang && statusLang != undefined">Выберите хотя бы одну языковую версию</p>
+        </div>
+      </div>
+      <button *ngIf="resultBoxList.length > 0"
+        class="btn btn-success"
+        type="submit"
+        [disabled]="!form.valid"
+      >Добавить языковую версию</button>
+    </form>
+  </div>
+  <div class="current-area" [ngClass]="{'disable-form': !hideForm}">
+    <p><b>Площадка успешна отредактирована!</b></p>
+    <p>
+      <button class="btn btn-success" (click)="setState('stepSiteEdit')">Редактировать еще одну площадку</button>
+    </p>
+
+  </div>
+
+  <hr>
+  <div class="current-area">
+    <p>
+      <button class="btn btn-info" (click)="setState('start')">Назад</button>
+    </p>
+  </div>
+</div>

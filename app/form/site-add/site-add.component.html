@@ -1,0 +1,73 @@
+<div class="page-container">
+  <h2>Создание новой площадки для сайта</h2>
+  <hr>
+  <div [ngClass]="{'disable-form': hideForm}">
+    <form class="form" (ngSubmit)="submitForm(form)" #form="ngForm">
+      <div class="form-group" [ngClass]="{'has-error': area.invalid && area.touched}">
+        <label>Введите название сайта: <br>Например: <b>my-domain.ru</b> (www, http, https - не надо!)</label>
+        <input
+          type="text"
+          name="area"
+          class="form-control"
+          #area = "ngModel"
+          ngModel
+          required
+        >
+        <p class="error" *ngIf="!statusCopy && statusCopy != undefined">Площадка с данным именем уже создана!</p>
+      </div>
+      <div class="form-group">
+        <label>Выберите языковые версии:</label>
+        <div ngModelGroup="langs">
+          <div *ngFor="let item of checkBoxList; index as i">
+            <label for="{{item.code}}">
+              <input
+                id="{{item.code}}"
+                [value]='item.code'
+                type="checkbox"
+                name="{{item.code}}"
+                ngModel
+             >
+              {{item.name}}
+            </label>
+          </div>
+        </div>
+        <p class="error" *ngIf="!statusLang && statusLang != undefined">Выберите хотя бы одну языковую версию</p>
+      </div>
+      <button
+        class="btn btn-success"
+        type="submit"
+        [disabled]="!form.valid"
+      >Создать площадку</button>
+    </form>
+    <hr>
+    <div class="current-area">
+      <h4>Список созданных площадок</h4>
+      <select
+        class="form-control"
+        multiple="multiple"
+
+      >
+        <option *ngFor="let area of areaCurrent">
+          {{area.NAME}}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="current-area" [ngClass]="{'disable-form': !hideForm}">
+    <p><b>Площадка успешна создана!</b></p>
+    <p>
+      <button class="btn btn-success" (click)="setState('stepSiteAdd')">Добавить еще одну площадку</button>
+    </p>
+    <p>
+      <button class="btn btn-success" (click)="setState('stepFormAdd')">Добавить новую форму</button>
+    </p>
+
+  </div>
+
+  <hr>
+  <div class="current-area">
+    <p>
+      <button class="btn btn-info" (click)="setState('start')">Назад</button>
+    </p>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="page">
+  <div class="container">
+    <div class="main-container" [ngClass]="{'disable-form': !states.start.show}">
+      <div class="logout">
+        <a class="" (click)="onLogout()">
+          Выйти из системы
+        </a>
+      </div>
+      <h2>Выберите действие:</h2>
+      <hr>
+      <div class="container-site">
+        <h4>Сайты</h4>
+        <button class="btn btn-success" (click)="setState('stepSiteAdd')">Создать площадку</button>
+        <button class="btn btn-primary" (click)="setState('stepSiteEdit')">Редактировать площадку</button>
+        <button class="btn btn-danger" (click)="setState('stepSiteDelete')">Удалить площадку</button>
+      </div>
+      <hr>
+      <div class="container-form">
+        <h4>Формы</h4>
+        <button class="btn btn-success" (click)="setState('stepFormAdd')">Добавить форму</button>
+        <button class="btn btn-primary" (click)="setState('stepFormEdit')">Редактировать форму</button>
+        <button class="btn btn-danger" (click)="setState('stepFormDelete')">Удалить форму</button>
+        <button class="btn btn-info" (click)="setState('stepFormView')">Просмотр форм</button>
+      </div>
+      <hr>
+      <div class="container-template" [ngClass]="{'disable-form': !superadmin}">
+        <h4>Шаблон</h4>
+        <button class="btn btn-primary"  (click)="setState('stepTemplateEditor')">Редактировать шаблоны</button>
+        <button class="btn btn-primary"  (click)="setState('stepTemplateRegen')">Перегенерировать формы</button>
+      </div>
+    </div>
+    <app-site-add [ngClass]="{'disable-form': !states.stepSiteAdd.show}" [states]="states.stepSiteAdd.show"></app-site-add>
+    <app-site-edit [ngClass]="{'disable-form': !states.stepSiteEdit.show}" [states]="states.stepSiteEdit.show"></app-site-edit>
+    <app-site-delete [ngClass]="{'disable-form': !states.stepSiteDelete.show}" [states]="states.stepSiteDelete.show"></app-site-delete>
+    <app-form-add [ngClass]="{'disable-form': !states.stepFormAdd.show}" [states]="states.stepFormAdd.show"></app-form-add>
+    <app-form-edit [ngClass]="{'disable-form': !states.stepFormEdit.show}" [states]="states.stepFormEdit.show"></app-form-edit>
+    <app-form-delete [ngClass]="{'disable-form': !states.stepFormDelete.show}" [states]="states.stepFormDelete.show"></app-form-delete>
+    <app-form-view [ngClass]="{'disable-form': !states.stepFormView.show}" [states]="states.stepFormView.show"></app-form-view>
+    <app-template-editor [ngClass]="{'disable-form': !states.stepTemplateEditor.show}" [states]="states.stepTemplateEditor.show"></app-template-editor>
+    <app-template-regen [ngClass]="{'disable-form': !states.stepTemplateRegen.show}" [states]="states.stepTemplateRegen.show"></app-template-regen>
+  </div>
+</div>
+

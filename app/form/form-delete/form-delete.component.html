@@ -1,0 +1,63 @@
+<div class="page-container">
+  <div class="container">
+    <h2>Выберите форму для удаления</h2>
+    <div [ngClass]="{'disable-form': hideForm}">
+      <form class="form" (ngSubmit)="submitForm(form)" #form="ngForm">
+        <div class="form-group">
+          <label>Выберите название площадки</label>
+          <select
+            class="form-control"
+            name="site"
+            ngModel
+            (input)="getId($event)"
+            required
+          >
+            <option
+              *ngFor="let area of areaCurrent"
+              [value]="area.ID"
+            >
+              {{area.NAME}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group form_control">
+          <label>Выберите форму для удаления</label>
+          <select
+            class="form-control"
+            name="nameForm"
+            ngModel
+            #editFormList
+            (input)="editForm(editFormList.value)"
+            required
+          >
+            <option
+              *ngFor="let form of formList"
+              [value]="[form.ID, form.IBLOCK_SECTION_ID]"
+            >{{form.NAME}}</option>
+          </select>
+        </div>
+        <hr>
+        <button
+          [disabled]="!form.valid"
+          class="btn btn-danger"
+          type="submit"
+        >
+          Удалить</button>
+      </form>
+    </div>
+    <div class="current-area" [ngClass]="{'disable-form': !hideForm}">
+      <p>
+        Форма успешно удалена!
+      </p>
+      <p>
+        <button class="btn btn-primary" (click)="setState('stepFormDelete')">Удалить еще одну форму</button>
+      </p>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="current-area">
+  <p>
+    <button type="button" class="btn btn-info" (click)="setState('start')">В начало</button>
+  </p>
+</div>

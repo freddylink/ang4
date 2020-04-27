@@ -1,0 +1,33 @@
+.disable-form {
+  display: none;
+}
+
+.form-parts {
+  border: 2px solid aliceblue;
+  padding: 20px 10px;
+  background: aliceblue;
+}
+
+.form-introduction, .form-conclusion{
+  background: antiquewhite;
+  padding: 20px 10px;
+}
+
+.form-tlInfo {
+  background: gainsboro;
+  padding: 20px 10px;
+  margin: 0 0 20px;
+}
+
+.form-patterns {
+  background: oldlace;
+  padding: 20px 10px;
+}
+.btn-top {
+  float: right;
+  margin: 10px 0;
+}
+
+h3 {
+  text-align: center;
+}

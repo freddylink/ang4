@@ -1,0 +1,28 @@
+.disable-form {
+  display: none;
+}
+.btn-top {
+  float: right;
+  margin: 10px 0;
+}
+
+.check-all {
+  list-style-type: none;
+  max-width: 200px;
+  text-align: center;
+  background: aliceblue;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 1px solid darkgrey;
+  padding: 5px 10px;
+  text-transform: uppercase;
+}
+
+.check-all:hover {
+  cursor: pointer;
+}
+
+
+.preloader-form {
+
+}

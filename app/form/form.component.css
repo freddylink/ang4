@@ -1,0 +1,85 @@
+.logout {
+  width: 220px;
+  text-align: center;
+  border-radius: 5px;
+  background: teal;
+  color: #fff;
+  position: absolute;
+  right: 20px;
+  top: 0;
+  z-index: 1100;
+  display: block;
+  padding: 8px 0;
+}
+
+.logout a {
+  display: block;
+}
+
+.logout:hover {
+  cursor: pointer;
+  background: #59a5a5;
+}
+
+.btn {
+  min-width: 200px;
+}
+
+.main-container {
+  position: absolute;
+  width: 100%;
+  transform: translateY(-50%);
+  top: 50%;
+}
+
+
+app-site-add, app-form-add, app-form-edit, app-form-delete {
+  position: absolute;
+  width: 100%;
+  transform: translateY(-50%);
+  top: 50%;
+  height: 100%;
+}
+
+h1, h3 {
+  text-align: center;
+}
+
+h4 {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.disable-form {
+  display: none;
+}
+
+.page {
+  width: 100%;
+  position: relative;
+  height: 100%;
+}
+
+.container {
+  min-height: 100vh;
+  position: relative;
+}
+
+.container-form {
+  background: aliceblue;
+  padding: 20px 10px;
+}
+
+.container-site {
+  background: #FFF9F0;
+  padding: 20px 10px;
+}
+
+.container-template {
+  background: gainsboro;
+  padding: 20px 10px;
+}
+
+.disable-form {
+  display: none;
+}

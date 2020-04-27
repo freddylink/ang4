@@ -1,0 +1,103 @@
+<div class="page-container">
+  <div class="container">
+    <h2>
+      Перегенерация документов
+      <button type="button" class="btn btn-info btn-top" (click)="setState('start')">Назад</button>
+    </h2>
+    <div [ngClass]="{'disable-form': hideForm}">
+      <form class="form" (ngSubmit)="submitForm(form)" #form="ngForm">
+        <div class="form-group">
+          <label>Выберите версию шаблона</label>
+          <select
+            class="form-control"
+            name="site"
+            ngModel
+            #templateNumber
+            (input)="loadTemplate(templateNumber.value)"
+            required
+          >
+            <option
+              *ngFor="let item of templates"
+              [value]="item"
+            >
+              {{item[0]}}
+            </option>
+          </select>
+        </div>
+        <div class="" [ngClass]="{'disable-form': !hideBlock}">
+          <div class="form-tlInfo">
+            <h4>Площадки</h4>
+            <ul class="list-group">
+              <li
+                [ngClass]="{'disable-form': !hideCheckAll}"
+                class="check-all"
+                (click)="checkAll()"
+              >Выделить все</li>
+              <li
+                class="list-group-item lang-li"
+                *ngFor="let elem of elements"
+              >
+                <label for="{{elem.NAME}}">
+                  <input
+                    id="{{elem.NAME}}"
+                    [value]='elem.ID'
+                    type="checkbox"
+                    name="checkbox-{{elem.ID}}"
+                    ngModel
+                  >
+                  {{elem.NAME}}
+                </label>
+              </li>
+
+            </ul>
+              <!--
+              <div
+                class="form-group"
+                *ngFor="let item of elem.subsection">
+                <div
+                  class="form-group"
+                  *ngFor="let form of item.elems">
+                  <h5><b>{{form.NAME}}</b></h5>
+                  <h5><b>{{form.PROPERTY_PDF_LINK_VALUE}}</b></h5>
+                </div>
+              </div>
+              -->
+          </div>
+        </div>
+        <br>
+        <button
+          [disabled]="!form.valid || preloaderForm"
+          class="btn btn-success"
+          type="submit"
+        >
+          Перегенерировать документы</button>
+      </form>
+    </div>
+    <div *ngIf="preloaderForm">
+      <br>
+      <p>
+        Это может занять некоторое время!
+      </p>
+      <wfm-loader></wfm-loader>
+    </div>
+    <div class="current-area" [ngClass]="{'disable-form': !hideForm}">
+      <p>
+        Все pdf-документы пересобраны!
+      </p>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let item of itemRegen | keys; let i = index"
+        >
+          {{item.value}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="current-area">
+  <p>
+    <button type="button" class="btn btn-info" (click)="setState('start')">Назад</button>
+  </p>
+</div>

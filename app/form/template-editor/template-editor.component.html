@@ -1,0 +1,131 @@
+<div class="page-container">
+  <div class="container">
+    <h2>
+      Редактор шаблонов
+      <button type="button" class="btn btn-info btn-top" (click)="setState('start')">Назад</button>
+    </h2>
+    <div [ngClass]="{'disable-form': hideForm}">
+      <form class="form" (ngSubmit)="submitForm(form)" #form="ngForm">
+        <div class="form-group">
+          <label>Выберите шаблон для редактирования</label>
+          <select
+            class="form-control"
+            name="site"
+            ngModel
+            #templateNumber
+            (input)="loadTemplate(templateNumber.value)"
+            required
+          >
+            <option
+              *ngFor="let item of templates"
+              [value]="item[1]"
+            >
+              {{item[0]}}
+            </option>
+          </select>
+        </div>
+        <div class="" [ngClass]="{'disable-form': hideBlock}">
+          <div class="form-tlInfo">
+            <h4>Контактные данные</h4>
+            <div
+              class="form-group"
+              *ngFor="let item of tlInfo | keys">
+              <!--<label><b>{{item.key}}</b></label>-->
+              <input
+                type="text"
+                name="tlInfo-{{item.key}}"
+                [(ngModel)]="item.value"
+                class="form-control"
+              >
+            </div>
+          </div>
+          <div
+            class="form-group form-patterns"
+            *ngFor="let pattern of patternTemplate; let i = index">
+            <h4>Поля с автозаполнением: {{pattern.name}}</h4>
+            <div
+              class="form-group"
+              *ngFor="let item of pattern | keys"
+            >
+              <!--<label><b>{{item.key}}</b></label>-->
+              <input
+                type="text"
+                name="{{i+1}}pattern{{item.key}}"
+                [(ngModel)]="item.value"
+                class="form-control"
+              >
+            </div>
+          </div>
+          <hr>
+          <h3>Текстовые поля шаблона</h3>
+          <div class="form-introduction">
+
+            <h4>Вступительный блок</h4>
+            <div
+              class="form-group"
+              *ngFor="let item of introduction | keys">
+              <!--<label><b>{{item.key}}</b></label>-->
+              <input
+                type="text"
+                name="introduction-{{item.key}}"
+                [(ngModel)]="item.value"
+                class="form-control"
+              >
+            </div>
+          </div>
+          <div
+            class="form-group form-parts"
+            *ngFor="let part of partTemplate; let i = index">
+            <h4>{{part.heading}}</h4>
+            <div
+              class="form-group"
+              *ngFor="let item of part | keys"
+            >
+              <!--<label><b>{{item.key}}</b></label>-->
+              <input
+                type="text"
+                name="{{i+1}}{{item.key}}"
+                [(ngModel)]="item.value"
+                class="form-control"
+              >
+            </div>
+          </div>
+          <div class="form-conclusion">
+            <h4>Нижний блок</h4>
+            <div
+              class="form-group"
+              *ngFor="let item of conclusion | keys">
+              <!--<label><b>{{item.key}}</b></label>-->
+              <input
+                type="text"
+                name="conclusion-{{item.key}}"
+                [(ngModel)]="item.value"
+                class="form-control"
+              >
+            </div>
+
+          </div>
+          <br>
+          <button
+            [disabled]="!form.valid"
+            class="btn btn-danger"
+            type="submit"
+          >
+            Сохранить
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="current-area" [ngClass]="{'disable-form': !hideForm}">
+      <p>
+        Шаблон успешно изменен!
+      </p>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="current-area">
+  <p>
+    <button type="button" class="btn btn-info" (click)="setState('start')">Назад</button>
+  </p>
+</div>

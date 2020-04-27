@@ -1,0 +1,62 @@
+<div class="page">
+  <div class="container">
+    <div class="main-container">
+      <header class="auth-header">
+        <h1 class="auth-title">
+          Генератор документов 152-ФЗ
+        </h1>
+      </header>
+      <div class="auth-content">
+        <div
+          class="alert alert-{{message.type}}"
+          *ngIf="message.text"
+        >
+          {{message.text}}</div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div
+            [ngClass]="{'has-error': form.get('email').invalid && form.get('email').touched}"
+            class="form-group">
+            <label for="email"><b>Email</b></label>
+            <input
+              type="text"
+              class="form-control underlined"
+              id="email"
+              placeholder="Введите ваш email"
+              formControlName="email"
+            >
+            <span
+              class="form-help-text"
+              *ngIf="form.get('email').invalid && form.get('email').touched"
+            >
+        <span *ngIf="form.get('email')['errors']['required']">Email не может быть пустым. </span>
+    </span>
+          </div>
+          <div
+            [ngClass]="{'has-error': form.get('password').invalid && form.get('password').touched}"
+            class="form-group">
+            <label for="password"><b>Пароль</b></label>
+            <input
+              type="password"
+              class="form-control underlined"
+              id="password"
+              placeholder="Пароль"
+              formControlName="password"
+            >
+            <span
+              *ngIf="form.get('password').invalid && form.get('password').touched"
+            >
+      <span *ngIf="form.get('password')['errors']['required']">Пароль не может быть пустым. </span>
+    </span>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-block btn-primary"
+                    [disabled]="form.invalid"
+            >
+              Войти</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

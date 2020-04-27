@@ -1,0 +1,185 @@
+<div class="page-container">
+  <div class="container">
+    <h2>Форма генерации пользовательского соглашения</h2>
+    <div [ngClass]="{'disable-form': hideForm}">
+        <form class="form"  (ngSubmit)="submitForm(form)" #form="ngForm">
+          <div class="form-group">
+            <label>Выберите название сайта</label>
+            <select
+              class="form-control"
+              name="site"
+              ngModel
+              (input)="getId($event)"
+              required
+            >
+              <option
+                *ngFor="let area of areaCurrent"
+                [value]="area.ID"
+              >
+                {{area.NAME}}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Укажите языковую версию</label>
+            <select
+              class="form-control"
+              name="id"
+              ngModel
+              #currentLanguage
+              (input)="settingsLanguage(currentLanguage.value)"
+              required>
+              <option
+                *ngFor="let item of currentLangArr"
+                [value]="[item.ID, item.NAME]"
+                value="ru">{{item.NAME}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Кто оператор по обработке персональных данных?</label>
+            <br>
+            <select
+              class="form-control"
+              name="operator"
+              ngModel
+              #owner
+              (input)="inputOwner(owner.value)"
+              required
+            >
+              <option
+                *ngFor="let item of whoOwner; let i = index"
+                [value]="i"
+                >{{item}}</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Выбрать готовый шаблон (автозаполнение)</label>
+            <br>
+            <select
+              class="form-control"
+              name="template"
+              #template
+              (input)="getTemplate(template.value)"
+              ngModel
+            >
+              <option
+              *ngFor="let template of templateList"
+              [value]="template.name"
+              >{{template.name}}</option>
+            </select>
+          </div>
+
+          <div class="form-group form-group_owner" *ngIf="statusOwner">
+            <label>Введите название юридического лица: (например: ООО «Синий успех»)</label>
+            <input
+              type="text"
+              name="operator_name"
+              ngModel
+              class="form-control"
+              required
+            >
+          </div>
+          <div class="form-group form_control">
+            <label>Название формы, по сбору персональных данных (например: «Заявка на аренду зала»)</label>
+            <div class="info" (click)="infoAdd()">
+              <span class="info-text">i</span>
+              <div *ngIf="statusInfo" class="current-area-form">
+                <h4>Список созданных форм</h4>
+                <select
+                  class="form-control"
+                  multiple="multiple"
+                >
+                  <option *ngFor="let form of formList">
+                    {{form.NAME}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <!--[ngClass]="{'ng-dirty': name, 'ng-touched': name, 'ng-valid': name, 'ng-untouched': !name, 'ng-pristine': !name, 'ng-invalid': !name}"-->
+            <input
+              type="text"
+              name="name"
+              class="form-control"
+              ngModel
+              [(value)]="name"
+              required
+            >
+          </div>
+
+          <div class="form-group">
+            <label>Какие данные собираются? (например: фамилия, имя, отчество, адрес регистрации, адрес электронной почты, номер телефона, гражданство)</label>
+            <input
+              type="text"
+              class="form-control"
+              name="data"
+              ngModel
+              [(value)]="data"
+              required
+            >
+          </div>
+          <div class="form-group">
+            <label>Цель сбора данных (например: для оформления заявки на аренду зала)</label>
+            <input
+              type="text"
+              name="aim"
+              class="form-control"
+              ngModel
+              [(value)]="aim"
+              required
+            >
+          </div>
+          <div class="form-group form-group_owner" *ngIf="statusOwner">
+            <label>Укажите Email (например: xxxxx@xxxxx.xxxx)</label>
+            <input
+              type="text"
+              name="email"
+              class="form-control"
+              ngModel
+              required
+            >
+          </div>
+          <div class="form-group form-group_owner" *ngIf="statusOwner">
+            <label>Контактные данные владельца для сбора пользовательских данных (например: Российская Федерация, 424003, Республика Марий Эл, город Йошкар-Ола, Ленинский проспект 56А, офис 5, ООО «Трэвел Лайн Групп».)</label>
+            <textarea
+              type="text"
+              class="form-control"
+              name="contacts"
+              ngModel
+              required
+            ></textarea>
+          </div>
+          <button
+            [disabled]="!form.valid"
+            class="btn btn-success"
+            type="submit"
+          >
+            Сохранить</button>
+          <!--<button type="button" class="btn btn-primary">Сгенерировать pdf</button>-->
+        </form>
+      </div>
+  </div>
+  <div class="current-area" [ngClass]="{'disable-form': !hideForm}">
+    <p>
+      <label>Ссылка на pdf:</label>
+      <input
+        type="text"
+        name="create_link"
+        value="{{createLink}}"
+        class="form-control"
+      >
+    </p>
+    <p>
+      <button class="btn btn-primary" (click)="setState('stepFormAdd')">Добавить еще одну форму</button>
+    </p>
+    <p>
+      <button class="btn btn-primary" (click)="setState('stepSiteAdd')">Добавить новую площадку</button>
+    </p>
+  </div>
+</div>
+<hr>
+<div class="current-area">
+  <p>
+    <button type="button" class="btn btn-info" (click)="setState('start')">В начало</button>
+  </p>
+</div>

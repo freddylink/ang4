@@ -1,0 +1,46 @@
+.form-group.form_control {
+  position: relative;
+}
+
+.current-area-form {
+  position: absolute;
+  right: 0;
+  top:50%;
+  background: lightgoldenrodyellow;
+}
+
+.info {
+  float: right;
+  padding: 0 10px 0 0;
+  width: 34px;
+  height: 30px;
+  text-align: center;
+}
+
+.info-text {
+  display: inline-block;
+  background: lightblue;
+  border-radius: 50%;
+  width: 100%;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.info-text:hover {
+  cursor: pointer;
+}
+
+.disable-form {
+  display: none;
+}
+
+.form-group_owner label{
+  background: lightgoldenrodyellow;
+}
+
+.form-group_owner input{
+  background: lightgoldenrodyellow;
+}
+
+
+

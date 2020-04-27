@@ -1,0 +1,41 @@
+h1, h2, h3, h4 {
+  text-align: center;
+}
+
+.has-error input {
+  border: 1px solid red;
+}
+
+.disable-form {
+  display: none;
+}
+
+.form {
+  background: #FFF9F0;
+}
+
+
+.error {
+  border: 1px solid red;
+  margin: 0 -15px;
+  padding: 0 15px;
+}
+
+.form, .current-area {
+  margin: 0 auto;
+  max-width: 690px;
+  padding: 30px 60px;
+}
+
+.hide {
+  display: none;
+}
+
+.current-area select {
+  min-height: 240px;
+}
+
+.current-area h4 {
+  color: #0a0a0a;
+  background: aliceblue;
+}
